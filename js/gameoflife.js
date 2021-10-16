@@ -39,7 +39,19 @@ const corners = (state = []) => {
   return {topRight, bottomLeft};
 };
 
-const printCells = (state) => {};
+const printCells = (state) => {
+  const {topRight, bottomLeft} = corners(state);
+  let result = '';
+
+  for (let y = topRight[1]; y >= bottomLeft[1]; y--) {
+    for (let x = bottomLeft[0]; x <= topRight[0]; x++){
+      result += printCell([x, y], state);
+    }
+    result += '\n'
+  }
+
+  return result;
+};
 
 const getNeighborsOf = ([x, y]) => {};
 
