@@ -16,7 +16,28 @@ const printCell = (cell, state) => {
   return (does_contain)? '\u25A3' : '\u25A2';
 };
 
-const corners = (state = []) => {};
+const corners = (state = []) => {
+  if ( 0 === state.length){
+    return {
+      topRight: [0, 0],
+      bottomLeft: [0, 0]
+    }
+  }
+
+  const topRight=   [0, 0],
+        bottomLeft= [state[0][0],state[0][1]];
+  
+
+  for (const cell of state) {
+    topRight[0] = Math.max(topRight[0], cell[0]);
+    topRight[1] = Math.max(topRight[1], cell[1]);
+
+    bottomLeft[0] = Math.min(bottomLeft[0], cell[0]);
+    bottomLeft[1] = Math.min(bottomLeft[1], cell[1]);
+  }
+
+  return {topRight, bottomLeft};
+};
 
 const printCells = (state) => {};
 
