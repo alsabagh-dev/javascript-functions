@@ -3,7 +3,13 @@ function seed() {return [... arguments]}
 function same([x, y], [j, k]) {return  x===j && y===k}
 
 // The game state to search for `cell` is passed as the `this` value of the function.
-function contains(cell) {}
+function contains(cell) {
+  for (const state_cell of this) {
+    if(same(cell, state_cell)) 
+     return true; 
+   }
+   return false;
+}
 
 const printCell = (cell, state) => {};
 
