@@ -75,7 +75,23 @@ const willBeAlive = (cell, state) => {
         ( 2 ===  livingNeighbors.length && contains.call(state, cell))
 };
 
-const calculateNext = (state) => {};
+const calculateNext = (state) => {
+  const {topRight, bottomLeft} = corners(state);
+  bottomLeft[0] = (0===bottomLeft[0]) || (bottomLeft[0] - 1);
+  bottomLeft[1] = (0===bottomLeft[1]) || (bottomLeft[1] - 1);
+  topRight[0]++; topRight[1]++;
+
+  const newState = [];
+  for (let y = topRight[1]; y >= bottomLeft[1]; y--) {
+    for (let x = bottomLeft[0]; x <= topRight[0]; x++){
+      if(willBeAlive([x,y], state)){
+        newState.push([x,y]);
+      }
+    }
+  }
+
+  return newState;
+};
 
 const iterate = (state, iterations) => {};
 
